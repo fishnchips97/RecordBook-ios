@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21100B09D2DA185393084777 /* Pods_RecordBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F1432D926AC34922CD2270 /* Pods_RecordBook.framework */; };
 		D9B3DFCA21AC62D100E4A984 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3DFC921AC62D100E4A984 /* AppDelegate.swift */; };
 		D9B3DFCC21AC62D100E4A984 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3DFCB21AC62D100E4A984 /* FirstViewController.swift */; };
 		D9B3DFCE21AC62D100E4A984 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3DFCD21AC62D100E4A984 /* SecondViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2988F3A3ADA838FBEB33FA40 /* Pods-RecordBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecordBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecordBook/Pods-RecordBook.debug.xcconfig"; sourceTree = "<group>"; };
+		88F1432D926AC34922CD2270 /* Pods_RecordBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecordBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9385BAF18741A68B4F8CD885 /* Pods-RecordBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecordBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecordBook/Pods-RecordBook.release.xcconfig"; sourceTree = "<group>"; };
 		D9B3DFC621AC62D100E4A984 /* RecordBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B3DFC921AC62D100E4A984 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9B3DFCB21AC62D100E4A984 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -31,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21100B09D2DA185393084777 /* Pods_RecordBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C762F7D4B8AE5FDA63A6EFC3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2988F3A3ADA838FBEB33FA40 /* Pods-RecordBook.debug.xcconfig */,
+				9385BAF18741A68B4F8CD885 /* Pods-RecordBook.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D9B3DFBD21AC62D100E4A984 = {
 			isa = PBXGroup;
 			children = (
 				D9B3DFC821AC62D100E4A984 /* RecordBook */,
 				D9B3DFC721AC62D100E4A984 /* Products */,
+				C762F7D4B8AE5FDA63A6EFC3 /* Pods */,
+				E2501EAB3CC360E14B1D007B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +91,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E2501EAB3CC360E14B1D007B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88F1432D926AC34922CD2270 /* Pods_RecordBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,9 +106,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9B3DFDA21AC62D300E4A984 /* Build configuration list for PBXNativeTarget "RecordBook" */;
 			buildPhases = (
+				55BFE8FC184D794914982E79 /* [CP] Check Pods Manifest.lock */,
 				D9B3DFC221AC62D100E4A984 /* Sources */,
 				D9B3DFC321AC62D100E4A984 /* Frameworks */,
 				D9B3DFC421AC62D100E4A984 /* Resources */,
+				36BBFE8019964EC192BB6ECE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -140,6 +166,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36BBFE8019964EC192BB6ECE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecordBook/Pods-RecordBook-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecordBook/Pods-RecordBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55BFE8FC184D794914982E79 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecordBook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D9B3DFC221AC62D100E4A984 /* Sources */ = {
@@ -292,6 +367,7 @@
 		};
 		D9B3DFDB21AC62D300E4A984 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2988F3A3ADA838FBEB33FA40 /* Pods-RecordBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -310,6 +386,7 @@
 		};
 		D9B3DFDC21AC62D300E4A984 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9385BAF18741A68B4F8CD885 /* Pods-RecordBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
