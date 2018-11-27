@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21100B09D2DA185393084777 /* Pods_RecordBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F1432D926AC34922CD2270 /* Pods_RecordBook.framework */; };
-		D907E7D521AD574800D4CAC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D907E7D421AD574800D4CAC6 /* GoogleService-Info.plist */; };
+		D907E7D921AD58B600D4CAC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D907E7D821AD58B600D4CAC6 /* GoogleService-Info.plist */; };
 		D9B3DFCA21AC62D100E4A984 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3DFC921AC62D100E4A984 /* AppDelegate.swift */; };
 		D9B3DFCC21AC62D100E4A984 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3DFCB21AC62D100E4A984 /* FirstViewController.swift */; };
 		D9B3DFCE21AC62D100E4A984 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B3DFCD21AC62D100E4A984 /* SecondViewController.swift */; };
@@ -21,7 +21,7 @@
 		2988F3A3ADA838FBEB33FA40 /* Pods-RecordBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecordBook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecordBook/Pods-RecordBook.debug.xcconfig"; sourceTree = "<group>"; };
 		88F1432D926AC34922CD2270 /* Pods_RecordBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecordBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9385BAF18741A68B4F8CD885 /* Pods-RecordBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecordBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecordBook/Pods-RecordBook.release.xcconfig"; sourceTree = "<group>"; };
-		D907E7D421AD574800D4CAC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D907E7D821AD58B600D4CAC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D9B3DFC621AC62D100E4A984 /* RecordBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9B3DFC921AC62D100E4A984 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9B3DFCB21AC62D100E4A984 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		D9B3DFC821AC62D100E4A984 /* RecordBook */ = {
 			isa = PBXGroup;
 			children = (
-				D907E7D421AD574800D4CAC6 /* GoogleService-Info.plist */,
+				D907E7D821AD58B600D4CAC6 /* GoogleService-Info.plist */,
 				D9B3DFC921AC62D100E4A984 /* AppDelegate.swift */,
 				D9B3DFDD21AC62E400E4A984 /* Model */,
 				D9B3DFCB21AC62D100E4A984 /* FirstViewController.swift */,
@@ -163,7 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9B3DFD621AC62D300E4A984 /* LaunchScreen.storyboard in Resources */,
-				D907E7D521AD574800D4CAC6 /* GoogleService-Info.plist in Resources */,
+				D907E7D921AD58B600D4CAC6 /* GoogleService-Info.plist in Resources */,
 				D9B3DFD321AC62D300E4A984 /* Assets.xcassets in Resources */,
 				D9B3DFD121AC62D100E4A984 /* Main.storyboard in Resources */,
 			);
