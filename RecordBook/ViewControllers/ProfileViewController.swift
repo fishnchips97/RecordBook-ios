@@ -14,6 +14,10 @@ class SecondViewController: UIViewController {
     var nameLabel: UILabel!
     var fontSize: CGFloat!
     var lightGrayColor: UIColor!
+    var darkGrayColor: UIColor!
+    var rankingView: UIView!
+    var statsView: UIView!
+    var boxOffset: CGFloat!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +28,12 @@ class SecondViewController: UIViewController {
     func setUpUI() {
         fontSize = 26
         lightGrayColor = UIColor(red: 224/255, green: 224/255, blue: 235/255, alpha: 1)
+        darkGrayColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
+        boxOffset = 20
         view.backgroundColor = lightGrayColor
         setUpColoredSection()
         setUpRankingSection()
+        setUpStatsSection()
     }
     
     func setUpColoredSection() {
@@ -110,7 +117,53 @@ class SecondViewController: UIViewController {
     }
     
     func setUpRankingSection() {
+        rankingView = UIView(frame: CGRect(x: boxOffset, y: coloredBackground.frame.maxY + 30, width: view.frame.width - boxOffset * 2, height: 130))
+        rankingView.backgroundColor = UIColor.white
+        rankingView.clipsToBounds = true
+        rankingView.layer.cornerRadius = 5
+        rankingView.dropShadow(color: UIColor.black, opacity: 0.05, offSet: CGSize(width: 0, height: 0), radius: 3, scale: true)
+        // Add medal icon
+        let medalIcon = UIImageView(frame: CGRect(x: rankingView.frame.minX + 5, y: 28, width: 80, height: 80))
+        medalIcon.image = UIImage(named: "medal.png")
+        rankingView.addSubview(medalIcon)
+        // Create ranking UI
+        let nationRank = UILabel(frame: CGRect(x: medalIcon.frame.maxX + 30, y: medalIcon.frame.minY - 5, width: 50, height: 50))
+        nationRank.text = "#4"
+        nationRank.font = UIFont.boldSystemFont(ofSize: fontSize + 20)
+        nationRank.textColor = UIColor.black
+        nationRank.sizeToFit()
+        rankingView.addSubview(nationRank)
+        let nationRankLabel = UILabel(frame: CGRect(x: nationRank.frame.maxX - nationRank.frame.width/2, y: nationRank.frame.maxY + 5, width: 50, height: 50))
+        nationRankLabel.text = "National Rank"
+        nationRankLabel.font = nationRankLabel.font.withSize(fontSize - 10)
+        nationRankLabel.textColor = darkGrayColor
+        nationRankLabel.sizeToFit()
+        nationRankLabel.frame.origin.x -= nationRankLabel.frame.width / 2
+        rankingView.addSubview(nationRankLabel)
+        let stateRank = UILabel(frame: CGRect(x: nationRank.frame.maxX + 70, y: medalIcon.frame.minY - 5, width: 50, height: 50))
+        stateRank.text = "#1"
+        stateRank.font = UIFont.boldSystemFont(ofSize: fontSize + 20)
+        stateRank.textColor = UIColor.black
+        stateRank.sizeToFit()
+        rankingView.addSubview(stateRank)
+        let stateRankLabel = UILabel(frame: CGRect(x: stateRank.frame.maxX - stateRank.frame.width/2, y: nationRank.frame.maxY + 5, width: 50, height: 50))
+        stateRankLabel.text = "State Rank"
+        stateRankLabel.font = stateRankLabel.font.withSize(fontSize - 10)
+        stateRankLabel.textColor = darkGrayColor
+        stateRankLabel.sizeToFit()
+        stateRankLabel.frame.origin.x -= stateRankLabel.frame.width / 2
+        rankingView.addSubview(stateRankLabel)
+        view.addSubview(rankingView)
+    }
+    
+    func setUpStatsSection() {
+        statsView = UIView(frame: CGRect(x: boxOffset, y: rankingView.frame.maxY + 30, width: view.frame.width - boxOffset * 2, height: 250))
+        statsView.backgroundColor = UIColor.white
+        statsView.clipsToBounds = true
+        statsView.layer.cornerRadius = 5
+        statsView.dropShadow(color: UIColor.black, opacity: 0.05, offSet: CGSize(width: 0, height: 0), radius: 3, scale: true)
         
+        view.addSubview(statsView)
     }
 
 }
