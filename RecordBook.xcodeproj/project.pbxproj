@@ -59,13 +59,6 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		B47EF23A21AF69BF00D3EC43 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		C762F7D4B8AE5FDA63A6EFC3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +66,23 @@
 				9385BAF18741A68B4F8CD885 /* Pods-RecordBook.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D953D00421AF6BCB00583632 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D953D00521AF6BE400583632 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B47EF23821AF689700D3EC43 /* medal.png */,
+				B47EF23421AEA70200D3EC43 /* boris.png */,
+				B47EF23221AE9E5A00D3EC43 /* profile.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		D9B3DFBD21AC62D100E4A984 = {
@@ -96,10 +106,8 @@
 		D9B3DFC821AC62D100E4A984 /* RecordBook */ = {
 			isa = PBXGroup;
 			children = (
-				B47EF23A21AF69BF00D3EC43 /* Models */,
-				B47EF23821AF689700D3EC43 /* medal.png */,
-				B47EF23421AEA70200D3EC43 /* boris.png */,
-				B47EF23221AE9E5A00D3EC43 /* profile.png */,
+				D953D00521AF6BE400583632 /* Images */,
+				D953D00421AF6BCB00583632 /* Models */,
 				B47EF22C21AE963500D3EC43 /* GoogleService-Info.plist */,
 				D9B3DFC921AC62D100E4A984 /* AppDelegate.swift */,
 				B47EF22E21AE965000D3EC43 /* ViewControllers */,
