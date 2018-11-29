@@ -26,6 +26,23 @@
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
+        <!--Feed-->
+        <scene sceneID="PVx-82-s5a">
+            <objects>
+                <viewController title="Feed" id="t3w-1R-Qjf" customClass="FeedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hbi-Fi-MyE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="kRC-It-5cp"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Feed" image="home.png" id="H0Q-2b-Tsx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="psp-ZI-64h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1479" y="9"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
@@ -54,6 +71,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="t3w-1R-Qjf" kind="relationship" relationship="viewControllers" id="9yX-XU-xli"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -63,6 +81,7 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="home.png" width="32" height="32"/>
         <image name="profile.png" width="24" height="24"/>
     </resources>
 </document>
