@@ -14,8 +14,6 @@ class SecondViewController: UIViewController {
     var coloredBackground: UIView!
     var nameLabel: UILabel!
     var fontSize: CGFloat!
-    var lightGrayColor: UIColor!
-    var darkGrayColor: UIColor!
     var rankingView: UIView!
     var statsView: UIView!
     var boxOffset: CGFloat!
@@ -28,12 +26,14 @@ class SecondViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.lineChartView.animate(xAxisDuration: 0, yAxisDuration: 1.0)
+    }
+    
     func setUpUI() {
         fontSize = 26
-        lightGrayColor = UIColor(red: 224/255, green: 224/255, blue: 235/255, alpha: 1)
-        darkGrayColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)
         boxOffset = 20
-        view.backgroundColor = lightGrayColor
+        view.backgroundColor = Constants.lightGrayColor
         setUpColoredSection()
         setUpRankingSection()
         setUpStatsSection()
@@ -42,10 +42,9 @@ class SecondViewController: UIViewController {
     func setUpColoredSection() {
         // Set up background
         let rect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 0.38)
-        let backgroundColor = UIColor(red: 51/255, green: 153/255, blue: 1, alpha: 1)
         coloredBackground = UIView(frame: rect)
-        coloredBackground.backgroundColor = backgroundColor
-        coloredBackground.dropShadow(color: backgroundColor, opacity: 1, offSet: CGSize(width: 0, height: 3), radius: 15, scale: true)
+        coloredBackground.backgroundColor = Constants.lightBlueColor
+        coloredBackground.dropShadow(color: Constants.lightBlueColor, opacity: 1, offSet: CGSize(width: 0, height: 3), radius: 15, scale: true)
         // Set up title
         let profileTitle = UILabel(frame: CGRect(x: 0, y: view.frame.height * 0.06, width: 100, height: 30))
         profileTitle.text = "Profile"
@@ -97,7 +96,7 @@ class SecondViewController: UIViewController {
         let followersLabel = UILabel(frame: CGRect(x: 0, y: numFollowers.frame.maxY + 3, width: 100, height: 30))
         followersLabel.text = "Followers"
         followersLabel.font = followersLabel.font.withSize(fontSize - 11)
-        followersLabel.textColor = lightGrayColor
+        followersLabel.textColor = Constants.lightGrayColor
         followersLabel.sizeToFit()
         followersLabel.frame.origin.x = followersOffsetX -  followersLabel.frame.width / 2
         coloredBackground.addSubview(followersLabel)
@@ -112,7 +111,7 @@ class SecondViewController: UIViewController {
         let followingLabel = UILabel(frame: CGRect(x: 0, y: numFollowers.frame.maxY + 3, width: 100, height: 30))
         followingLabel.text = "Following"
         followingLabel.font = followersLabel.font.withSize(fontSize - 11)
-        followingLabel.textColor = lightGrayColor
+        followingLabel.textColor = Constants.lightGrayColor
         followingLabel.sizeToFit()
         followingLabel.frame.origin.x = followingOffsetX  - followingLabel.frame.width / 2
         coloredBackground.addSubview(followingLabel)
@@ -126,33 +125,33 @@ class SecondViewController: UIViewController {
         rankingView.layer.cornerRadius = 5
         rankingView.dropShadow(color: UIColor.black, opacity: 0.05, offSet: CGSize(width: 0, height: 0), radius: 3, scale: true)
         // Add medal icon
-        let medalIcon = UIImageView(frame: CGRect(x: rankingView.frame.minX + 10, y: 28, width: 80, height: 80))
+        let medalIcon = UIImageView(frame: CGRect(x: 0, y: 10, width: 125, height: 125))
         medalIcon.image = UIImage(named: "medal.png")
         rankingView.addSubview(medalIcon)
         // Create ranking UI
-        let nationRank = UILabel(frame: CGRect(x: medalIcon.frame.maxX + 30, y: medalIcon.frame.minY - 5, width: 50, height: 50))
+        let nationRank = UILabel(frame: CGRect(x: medalIcon.frame.maxX + 10, y: 27, width: 50, height: 50))
         nationRank.text = "#4"
         nationRank.font = UIFont.boldSystemFont(ofSize: fontSize + 20)
         nationRank.textColor = UIColor.black
         nationRank.sizeToFit()
         rankingView.addSubview(nationRank)
-        let nationRankLabel = UILabel(frame: CGRect(x: nationRank.frame.maxX - nationRank.frame.width/2, y: nationRank.frame.maxY + 5, width: 50, height: 50))
+        let nationRankLabel = UILabel(frame: CGRect(x: nationRank.frame.maxX - nationRank.frame.width/2, y: nationRank.frame.maxY, width: 50, height: 50))
         nationRankLabel.text = "NATIONAL RANK"
         nationRankLabel.font = nationRankLabel.font.withSize(fontSize - 13)
-        nationRankLabel.textColor = darkGrayColor
+        nationRankLabel.textColor = Constants.darkGrayColor
         nationRankLabel.sizeToFit()
         nationRankLabel.frame.origin.x -= nationRankLabel.frame.width / 2
         rankingView.addSubview(nationRankLabel)
-        let stateRank = UILabel(frame: CGRect(x: nationRank.frame.maxX + 70, y: medalIcon.frame.minY - 5, width: 50, height: 50))
+        let stateRank = UILabel(frame: CGRect(x: nationRank.frame.maxX + 70, y: 27, width: 50, height: 50))
         stateRank.text = "#1"
         stateRank.font = UIFont.boldSystemFont(ofSize: fontSize + 20)
         stateRank.textColor = UIColor.black
         stateRank.sizeToFit()
         rankingView.addSubview(stateRank)
-        let stateRankLabel = UILabel(frame: CGRect(x: stateRank.frame.maxX - stateRank.frame.width/2, y: nationRank.frame.maxY + 5, width: 50, height: 50))
+        let stateRankLabel = UILabel(frame: CGRect(x: stateRank.frame.maxX - stateRank.frame.width/2, y: nationRank.frame.maxY, width: 50, height: 50))
         stateRankLabel.text = "STATE RANK"
         stateRankLabel.font = stateRankLabel.font.withSize(fontSize - 13)
-        stateRankLabel.textColor = darkGrayColor
+        stateRankLabel.textColor = Constants.darkGrayColor
         stateRankLabel.sizeToFit()
         stateRankLabel.frame.origin.x -= stateRankLabel.frame.width / 2
         rankingView.addSubview(stateRankLabel)
@@ -169,7 +168,7 @@ class SecondViewController: UIViewController {
         let statsTitle = UILabel(frame: CGRect(x: 15, y: 12, width: 50, height: 50))
         statsTitle.text = "THIS WEEK"
         statsTitle.font = statsTitle.font.withSize(fontSize - 13)
-        statsTitle.textColor = darkGrayColor
+        statsTitle.textColor = Constants.darkGrayColor
         statsTitle.sizeToFit()
         statsView.addSubview(statsTitle)
         // Set up miles run this week
@@ -185,6 +184,27 @@ class SecondViewController: UIViewController {
     
     func setUpWeekChart() {
         lineChartView = LineChartView(frame: CGRect(x: 15, y: milesRunLabel.frame.maxY + 10, width: statsView.frame.width - 30, height: 150))
+        var dates: [String] = []
+        // Create xAxis with past weeks worth of dates
+        for i in (0...7).reversed() {
+            let date = Calendar.current.date(byAdding: .day, value: -i, to: Date())!
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "MM/dd"
+            let dateString = dateFormatter.string(from: date)
+            dates.append(dateString)
+        }
+        let dataPoints: [Double] = [1,3,1,0,4,0,1] //yAxis
+        let maxPoint = dataPoints.max()
+        lineChartView.setLineChartData(xValues: dates, yValues: dataPoints, label: "Miles Ran")
+        lineChartView.leftAxis.granularityEnabled = true
+        lineChartView.leftAxis.granularity = 1.0
+        lineChartView.leftAxis.axisMinimum = 0.0
+        lineChartView.leftAxis.axisMaximum = Double(maxPoint! + 1)
+        lineChartView.rightAxis.enabled = false
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
+        lineChartView.xAxis.avoidFirstLastClippingEnabled = true
         statsView.addSubview(lineChartView)
     }
 
@@ -202,6 +222,50 @@ extension UIView {
         layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+}
+
+// Extension to let xAxis accept strings
+extension LineChartView {
+    
+    private class LineChartFormatter: NSObject, IAxisValueFormatter {
+        
+        var labels: [String] = []
+        
+        func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+            return labels[Int(value)]
+        }
+        
+        init(labels: [String]) {
+            super.init()
+            self.labels = labels
+        }
+    }
+    
+    func setLineChartData(xValues: [String], yValues: [Double], label: String) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<yValues.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y: yValues[i])
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = LineChartDataSet(values: dataEntries, label: label)
+        chartDataSet.drawValuesEnabled = false
+        chartDataSet.lineWidth = 2
+        chartDataSet.colors = [NSUIColor(cgColor: Constants.lightBlueColor.cgColor)]
+        chartDataSet.circleRadius = 4
+        chartDataSet.circleHoleRadius = 2.5
+        chartDataSet.setCircleColor(NSUIColor(cgColor: Constants.yellowColor.cgColor))
+        let chartData = LineChartData(dataSet: chartDataSet)
+        
+        let chartFormatter = LineChartFormatter(labels: xValues)
+        let xAxis = XAxis()
+        xAxis.valueFormatter = chartFormatter
+        self.xAxis.valueFormatter = xAxis.valueFormatter
+        
+        self.data = chartData
     }
 }
 
