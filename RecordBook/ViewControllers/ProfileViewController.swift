@@ -3,13 +3,14 @@
 //  RecordBook
 //
 //  Created by Erik Fisher on 11/26/18.
+//  Modified by Boris Yue
 //  Copyright © 2018 Berk. All rights reserved.
 //
 
 import UIKit
 import Charts
 
-class SecondViewController: UIViewController, UIScrollViewDelegate {
+class ProfileViewController: UIViewController, UIScrollViewDelegate {
     
     var scrollView: UIScrollView!
     var containerView: UIView!
@@ -22,7 +23,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate {
     var milesRunLabel: UILabel!
     var lineChartView: LineChartView!
     var gearView: UIView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpScrollView()
@@ -40,7 +41,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate {
         scrollView.frame = view.bounds
         containerView.frame = CGRect(x: 0, y: -50, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
         containerView.isUserInteractionEnabled = true
-
+        
     }
     
     func setUpScrollView() {
@@ -72,7 +73,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate {
         let profileTitle = UILabel(frame: CGRect(x: 0, y: view.frame.height * 0.06, width: 100, height: 30))
         profileTitle.text = "Profile"
         profileTitle.font = profileTitle.font.withSize(fontSize)
-//        profileTitle.font = UIFont.boldSystemFont(ofSize: 30)
+        //        profileTitle.font = UIFont.boldSystemFont(ofSize: 30)
         profileTitle.textColor = UIColor.white
         profileTitle.sizeToFit()
         profileTitle.frame.origin.x = coloredBackground.frame.width / 2 - profileTitle.frame.width / 2
@@ -91,7 +92,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate {
         nameLabel = UILabel(frame: CGRect(x: 0, y: profileImage.frame.maxY + 10, width: 100, height: 30))
         nameLabel.text = "Boris Yue"
         nameLabel.font = nameLabel.font.withSize(fontSize)
-//        nameLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        //        nameLabel.font = UIFont.boldSystemFont(ofSize: 30)
         nameLabel.textColor = UIColor.white
         nameLabel.sizeToFit()
         nameLabel.frame.origin.x = coloredBackground.frame.width / 2 - nameLabel.frame.width / 2
@@ -251,7 +252,7 @@ class SecondViewController: UIViewController, UIScrollViewDelegate {
         
         containerView.addSubview(gearView)
     }
-
+    
 }
 
 extension UIView {
