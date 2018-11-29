@@ -10,14 +10,17 @@ import UIKit
 
 class LeaderboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let list = ["Boris", "Marina", "Amy", "Aviral", "Erik"]
+    let list = ["1. Boris - 5:20", "2. Marina - 5:30", "3. Amy - 5:32", "4. Aviral - 5:35", "5. Erik - 5:37"]
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return(list.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: <#T##UITableViewCell.CellStyle#>, reuseIdentifier: <#T##String?#>)
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cell")
+        cell.textLabel?.text = list[indexPath.row]
+        
+        return(cell)
     }
     
 
