@@ -21,7 +21,7 @@ class FeedViewCell: UITableViewCell {
     var likeLabel: UILabel!
     var commentLabel: UILabel!
     var shareLabel: UILabel!
-    let offset: CGFloat = 25
+    let offset: CGFloat = 15
     
 
     override func awakeFromNib() {
@@ -43,7 +43,7 @@ class FeedViewCell: UITableViewCell {
     }
     
     func setUpImage() {
-        userPicture = UIImageView(frame: CGRect(x: offset, y: offset, width: 50, height: 50))
+        userPicture = UIImageView(frame: CGRect(x: offset, y: offset + 5, width: 50, height: 50))
         userPicture.layer.cornerRadius = userPicture.frame.width / 2
         userPicture.layer.masksToBounds = true
         contentView.addSubview(userPicture)
@@ -74,7 +74,7 @@ class FeedViewCell: UITableViewCell {
     }
     
     func setUpPostPicture() {
-        postPicture = UIImageView(frame: CGRect(x: 10.5, y: 15, width: contentView.frame.width - 21, height: 200))
+        postPicture = UIImageView(frame: CGRect(x: 0, y: 15, width: contentView.frame.width, height: 210))
         contentView.addSubview(postPicture)
     }
     
@@ -89,7 +89,7 @@ class FeedViewCell: UITableViewCell {
         likeLabel.textColor = UIColor.black
         contentView.addSubview(likeLabel)
         
-        commentIcon = UIImageView(frame: CGRect(x: offset + 10, y: verticalOffset, width: 16, height: 16))
+        commentIcon = UIImageView(frame: CGRect(x: offset + 20, y: verticalOffset, width: 16, height: 16))
         commentIcon.image = UIImage(named: "comment")
         contentView.addSubview(commentIcon)
         
@@ -98,7 +98,7 @@ class FeedViewCell: UITableViewCell {
         commentLabel.textColor = UIColor.black
         contentView.addSubview(commentLabel)
         
-        shareIcon = UIImageView(frame: CGRect(x: offset + 10, y: verticalOffset, width: 16, height: 16))
+        shareIcon = UIImageView(frame: CGRect(x: offset + 20, y: verticalOffset, width: 16, height: 16))
         shareIcon.image = UIImage(named: "share")
         contentView.addSubview(shareIcon)
         

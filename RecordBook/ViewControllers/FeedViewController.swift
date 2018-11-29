@@ -24,6 +24,10 @@ class FeedViewController: UIViewController {
         setUpUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.barTintColor = .white
+    }
+    
     func setUpNavBar() {
         self.navigationController?.navigationBar.barTintColor = Constants.lightBlueColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 26)]
@@ -32,29 +36,9 @@ class FeedViewController: UIViewController {
     }
     
     func setUpUI() {
-        setUpAddPost()
         setUpTableView()
     }
     
-    func setUpAddPost() {
-        addPostView = UIView(frame: CGRect(x: boxOffset, y: (navigationController?.navigationBar.frame.maxY)! + boxOffset, width: view.frame.width - boxOffset * 2, height: addPostHeight))
-        addPostView.backgroundColor = Constants.lightGrayColor
-//        addPostView.clipsToBounds = true
-//        addPostView.layer.cornerRadius = 5
-//        addPostView.dropShadow(color: UIColor.black, opacity: 0.05, offSet: CGSize(width: 0, height: 0), radius: 3, scale: true)
-        // Add text input
-//        addPostTextInput = UITextField(frame: CGRect(x: boxOffset, y: boxOffset, width: addPostView.frame.width - boxOffset * 2, height: addPostView.frame.height * 0.6))
-//        addPostTextInput.delegate = self
-//        addPostTextInput.font = UIFont.systemFont(ofSize: 16)
-//        addPostTextInput.textColor = Constants.lightGrayColor
-//        addPostTextInput.placeholder = "Type your status update..."
-//        addPostTextInput.contentVerticalAlignment = .top
-//        addPostTextInput.clearsOnBeginEditing = true
-//        addPostView.addSubview(addPostTextInput)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-//        view.addSubview(addPostView)
-    }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
@@ -66,7 +50,7 @@ class FeedViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.sectionHeaderHeight = addPostHeight
-        tableView.rowHeight = 200
+//        tableView.rowHeight = 200
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.frame.height / 10, right: 0)
         tableView.tableFooterView = UIView() // gets rid of the extra cells beneath
@@ -150,12 +134,11 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) { //makes the cells smaller
         cell.contentView.backgroundColor = Constants.lightGrayColor
-        let whiteView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: cell.contentView.frame.width - 20, height: cell.contentView.frame.height - 10))
+        let whiteView : UIView = UIView(frame: CGRect(x: 0, y: 10, width: cell.contentView.frame.width, height: cell.contentView.frame.height - 10))
         whiteView.layer.backgroundColor = UIColor.white.cgColor
         whiteView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        whiteView.layer.shadowOpacity = 0.05
+        whiteView.layer.shadowOpacity = 0.2
         whiteView.layer.shadowRadius = 3
-        whiteView.layer.cornerRadius = 5
         cell.contentView.addSubview(whiteView)
         cell.contentView.sendSubviewToBack(whiteView)
     }
@@ -170,17 +153,6 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Constants.cellHeight
     }
-
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let currentOffset = scrollView.contentOffset.y
-//        var originalFrame = self.addPostView.frame
-//        if self.previousOffset == 0 {
-//            self.previousOffset = currentOffset
-//        }
-//        originalFrame.origin.y += (self.previousOffset - currentOffset)
-//        self.previousOffset = currentOffset
-//        self.addPostView.frame = originalFrame
-//    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: boxOffset, y: (navigationController?.navigationBar.frame.maxY)! + boxOffset, width: self.view.frame.width - boxOffset * 2, height: addPostHeight + 10))
@@ -190,20 +162,72 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         view.backgroundColor = Constants.lightGrayColor
-        let whiteView = UIView(frame: CGRect(x: boxOffset, y: boxOffset, width: view.frame.width - boxOffset * 2, height: self.addPostHeight))
+        let whiteView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: self.addPostHeight))
         whiteView.layer.backgroundColor = UIColor.white.cgColor
         whiteView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        whiteView.layer.shadowOpacity = 0.05
+        whiteView.layer.shadowOpacity = 0.2
         whiteView.layer.shadowRadius = 3
-        whiteView.layer.cornerRadius = 5
-        whiteView.layer.zPosition = 100
+//        whiteView.layer.cornerRadius = 5
+        // Add text input
+        let addPostTextInput = UITextField(frame: CGRect(x: boxOffset+5, y: boxOffset+5, width: whiteView.frame.width - boxOffset * 2, height: whiteView.frame.height * 0.6))
+        addPostTextInput.delegate = self
+        addPostTextInput.font = UIFont.systemFont(ofSize: 16)
+        addPostTextInput.textColor = Constants.darkGrayColor
+        addPostTextInput.placeholder = "Type your status update..."
+        addPostTextInput.contentVerticalAlignment = .top
+        addPostTextInput.clearsOnBeginEditing = true
+        addPostTextInput.textColor = UIColor.black
+        addPostTextInput.tintColor = Constants.darkGrayColor
+        addPostTextInput.returnKeyType = .go
+//        addPostTextInput.borderStyle = .line
+        whiteView.addSubview(addPostTextInput)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
+        
+        // Add horizontal line in between
+        let lineView = UIView(frame: CGRect(x: 0, y: addPostTextInput.frame.maxY, width: whiteView.frame.width, height: 1))
+        lineView.layer.borderWidth = 3
+        lineView.layer.borderColor = Constants.lightGrayColor.cgColor
+        lineView.layer.opacity = 0.8
+        whiteView.addSubview(lineView)
+        
+        // Add attachment options
+        let pictureIcon = UIImageView(frame: CGRect(x: self.view.frame.width * 0.1 - 8, y: lineView.frame.maxY + 8, width: 16, height: 16))
+        pictureIcon.image = UIImage(named: "picture")
+        whiteView.addSubview(pictureIcon)
+        let pictureText = UILabel(frame: CGRect(x: pictureIcon.frame.maxX + 5, y: lineView.frame.maxY + 7, width: 100, height: 30))
+        pictureText.text = "Photo"
+        pictureText.font = UIFont.systemFont(ofSize: 16)
+        pictureText.textColor = UIColor.black
+        pictureText.sizeToFit()
+        whiteView.addSubview(pictureText)
+        
+        let videoIcon = UIImageView(frame: CGRect(x: self.view.frame.width * 0.43 - 8, y: lineView.frame.maxY + 8, width: 16, height: 16))
+        videoIcon.image = UIImage(named: "video-camera")
+        whiteView.addSubview(videoIcon)
+        let videoText = UILabel(frame: CGRect(x: videoIcon.frame.maxX + 5, y: lineView.frame.maxY + 7, width: 100, height: 30))
+        videoText.text = "Video"
+        videoText.font = UIFont.systemFont(ofSize: 16)
+        videoText.textColor = UIColor.black
+        videoText.sizeToFit()
+        whiteView.addSubview(videoText)
+
+        let runIcon = UIImageView(frame: CGRect(x: self.view.frame.width * 0.75 - 8, y: lineView.frame.maxY + 7, width: 16, height: 16))
+        runIcon.image = UIImage(named: "running-icon")
+        whiteView.addSubview(runIcon)
+        let runText = UILabel(frame: CGRect(x: runIcon.frame.maxX + 5, y: lineView.frame.maxY + 7, width: 100, height: 30))
+        runText.text = "Run"
+        runText.font = UIFont.systemFont(ofSize: 16)
+        runText.textColor = UIColor.black
+        runText.sizeToFit()
+        whiteView.addSubview(runText)
+        
         view.addSubview(whiteView)
         view.sendSubviewToBack(whiteView)
-        print(whiteView)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.addPostHeight + 10
+        return self.addPostHeight
     }
 
     
