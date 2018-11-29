@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class SecondViewController: UIViewController {
     
@@ -18,6 +19,8 @@ class SecondViewController: UIViewController {
     var rankingView: UIView!
     var statsView: UIView!
     var boxOffset: CGFloat!
+    var milesRunLabel: UILabel!
+    var lineChartView: LineChartView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +31,7 @@ class SecondViewController: UIViewController {
     func setUpUI() {
         fontSize = 26
         lightGrayColor = UIColor(red: 224/255, green: 224/255, blue: 235/255, alpha: 1)
-        darkGrayColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1)
+        darkGrayColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)
         boxOffset = 20
         view.backgroundColor = lightGrayColor
         setUpColoredSection()
@@ -123,7 +126,7 @@ class SecondViewController: UIViewController {
         rankingView.layer.cornerRadius = 5
         rankingView.dropShadow(color: UIColor.black, opacity: 0.05, offSet: CGSize(width: 0, height: 0), radius: 3, scale: true)
         // Add medal icon
-        let medalIcon = UIImageView(frame: CGRect(x: rankingView.frame.minX + 5, y: 28, width: 80, height: 80))
+        let medalIcon = UIImageView(frame: CGRect(x: rankingView.frame.minX + 10, y: 28, width: 80, height: 80))
         medalIcon.image = UIImage(named: "medal.png")
         rankingView.addSubview(medalIcon)
         // Create ranking UI
@@ -134,8 +137,8 @@ class SecondViewController: UIViewController {
         nationRank.sizeToFit()
         rankingView.addSubview(nationRank)
         let nationRankLabel = UILabel(frame: CGRect(x: nationRank.frame.maxX - nationRank.frame.width/2, y: nationRank.frame.maxY + 5, width: 50, height: 50))
-        nationRankLabel.text = "National Rank"
-        nationRankLabel.font = nationRankLabel.font.withSize(fontSize - 10)
+        nationRankLabel.text = "NATIONAL RANK"
+        nationRankLabel.font = nationRankLabel.font.withSize(fontSize - 13)
         nationRankLabel.textColor = darkGrayColor
         nationRankLabel.sizeToFit()
         nationRankLabel.frame.origin.x -= nationRankLabel.frame.width / 2
@@ -147,8 +150,8 @@ class SecondViewController: UIViewController {
         stateRank.sizeToFit()
         rankingView.addSubview(stateRank)
         let stateRankLabel = UILabel(frame: CGRect(x: stateRank.frame.maxX - stateRank.frame.width/2, y: nationRank.frame.maxY + 5, width: 50, height: 50))
-        stateRankLabel.text = "State Rank"
-        stateRankLabel.font = stateRankLabel.font.withSize(fontSize - 10)
+        stateRankLabel.text = "STATE RANK"
+        stateRankLabel.font = stateRankLabel.font.withSize(fontSize - 13)
         stateRankLabel.textColor = darkGrayColor
         stateRankLabel.sizeToFit()
         stateRankLabel.frame.origin.x -= stateRankLabel.frame.width / 2
@@ -162,8 +165,27 @@ class SecondViewController: UIViewController {
         statsView.clipsToBounds = true
         statsView.layer.cornerRadius = 5
         statsView.dropShadow(color: UIColor.black, opacity: 0.05, offSet: CGSize(width: 0, height: 0), radius: 3, scale: true)
-        
+        // Set up section title
+        let statsTitle = UILabel(frame: CGRect(x: 15, y: 12, width: 50, height: 50))
+        statsTitle.text = "THIS WEEK"
+        statsTitle.font = statsTitle.font.withSize(fontSize - 13)
+        statsTitle.textColor = darkGrayColor
+        statsTitle.sizeToFit()
+        statsView.addSubview(statsTitle)
+        // Set up miles run this week
+        milesRunLabel = UILabel(frame: CGRect(x: 15, y: statsTitle.frame.maxY + 5, width: 100, height: 30))
+        milesRunLabel.text = "10 miles"
+        milesRunLabel.font = milesRunLabel.font.withSize(fontSize)
+        milesRunLabel.textColor = UIColor.black
+        milesRunLabel.sizeToFit()
+        statsView.addSubview(milesRunLabel)
+        setUpWeekChart()
         view.addSubview(statsView)
+    }
+    
+    func setUpWeekChart() {
+        lineChartView = LineChartView(frame: CGRect(x: 15, y: milesRunLabel.frame.maxY + 10, width: statsView.frame.width - 30, height: 150))
+        statsView.addSubview(lineChartView)
     }
 
 }
