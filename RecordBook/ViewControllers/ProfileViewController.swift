@@ -9,8 +9,10 @@
 import UIKit
 import Charts
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UIScrollViewDelegate {
     
+    var scrollView: UIScrollView!
+    var containerView: UIView!
     var coloredBackground: UIView!
     var nameLabel: UILabel!
     var fontSize: CGFloat!
@@ -19,15 +21,35 @@ class SecondViewController: UIViewController {
     var boxOffset: CGFloat!
     var milesRunLabel: UILabel!
     var lineChartView: LineChartView!
+    var gearView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpScrollView()
         setUpUI()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.lineChartView.animate(xAxisDuration: 0, yAxisDuration: 1.0)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        scrollView.frame = view.bounds
+        containerView.frame = CGRect(x: 0, y: -50, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
+        containerView.isUserInteractionEnabled = true
+
+    }
+    
+    func setUpScrollView() {
+        self.scrollView = UIScrollView()
+        self.scrollView.delegate = self
+        self.scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height + 30)
+        containerView = UIView()
+        scrollView.addSubview(containerView)
+        view.addSubview(scrollView)
     }
     
     func setUpUI() {
@@ -37,6 +59,7 @@ class SecondViewController: UIViewController {
         setUpColoredSection()
         setUpRankingSection()
         setUpStatsSection()
+        setUpGear()
     }
     
     func setUpColoredSection() {
@@ -115,7 +138,7 @@ class SecondViewController: UIViewController {
         followingLabel.sizeToFit()
         followingLabel.frame.origin.x = followingOffsetX  - followingLabel.frame.width / 2
         coloredBackground.addSubview(followingLabel)
-        view.addSubview(coloredBackground)
+        containerView.addSubview(coloredBackground)
     }
     
     func setUpRankingSection() {
@@ -155,7 +178,7 @@ class SecondViewController: UIViewController {
         stateRankLabel.sizeToFit()
         stateRankLabel.frame.origin.x -= stateRankLabel.frame.width / 2
         rankingView.addSubview(stateRankLabel)
-        view.addSubview(rankingView)
+        containerView.addSubview(rankingView)
     }
     
     func setUpStatsSection() {
@@ -179,7 +202,7 @@ class SecondViewController: UIViewController {
         milesRunLabel.sizeToFit()
         statsView.addSubview(milesRunLabel)
         setUpWeekChart()
-        view.addSubview(statsView)
+        containerView.addSubview(statsView)
     }
     
     func setUpWeekChart() {
@@ -206,6 +229,27 @@ class SecondViewController: UIViewController {
         lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
         lineChartView.xAxis.avoidFirstLastClippingEnabled = true
         statsView.addSubview(lineChartView)
+    }
+    
+    func setUpGear() {
+        gearView = UIView(frame: CGRect(x: boxOffset, y: statsView.frame.maxY + 30, width: view.frame.width - boxOffset * 2, height: 130))
+        gearView.backgroundColor = UIColor.white
+        gearView.clipsToBounds = true
+        gearView.layer.cornerRadius = 5
+        gearView.dropShadow(color: UIColor.black, opacity: 0.05, offSet: CGSize(width: 0, height: 0), radius: 3, scale: true)
+        // Set up gear title
+        let gearTitle = UILabel(frame: CGRect(x: 15, y: 12, width: 50, height: 50))
+        gearTitle.text = "RUNNING GEAR"
+        gearTitle.font = gearTitle.font.withSize(fontSize - 13)
+        gearTitle.textColor = Constants.darkGrayColor
+        gearTitle.sizeToFit()
+        gearView.addSubview(gearTitle)
+        // Set up logo
+        let brand = UIImageView(frame: CGRect(x: view.frame.width/2 - 110, y: gearTitle.frame.maxY - 40, width: 170, height: 160))
+        brand.image = UIImage(named: "shoe")
+        gearView.addSubview(brand)
+        
+        containerView.addSubview(gearView)
     }
 
 }
