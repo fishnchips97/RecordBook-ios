@@ -16,6 +16,13 @@ class FeedViewController: UIViewController {
     var tableView: UITableView!
     var addPostView: UIView!
     var addPostTextInput: UITextField!
+    var posts: [Post] = [Post(postDict: ["userPicture": UIImage(named: "boris"), "userName": "Boris Yue", "dateTime": "Nov 26 2017, 5:00 PM", "postPicture": UIImage(named: "running.jpg"), "postText": "Went on a really great run yesterday with amazing scenery and it was crazy!!!! Would recommend :)", "numLikes": "5", "numComments": "2", "numShares": "1"]),
+        Post(postDict: ["userPicture": UIImage(named: "aviral"), "userName": "Aviral Pereira", "dateTime": "Nov 28 2017, 5:36 PM", "postPicture": UIImage(named: "running3.jpg"), "postText": "Great run today!", "numLikes": "18", "numComments": "5", "numShares": "0"]),
+        Post(postDict: ["userPicture": UIImage(named: "erik"), "userName": "Erik Fisher", "dateTime": "Nov 28 2017, 6:23 PM", "postPicture": UIImage(named: "running2.jpg"), "postText": "Got a new personal record today for the mile at 4:26! #StriveForGreatness", "numLikes": "29", "numComments": "6", "numShares": "3"])]
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +32,9 @@ class FeedViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tabBarController?.tabBar.barTintColor = .white
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     func setUpNavBar() {
@@ -68,7 +77,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return posts.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as! FeedViewCell
@@ -83,38 +92,39 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
 //            cell.eventPicture.image = image
 //        })
 //        cell.username.text = currentPost.name
+        let currentPost = posts[posts.count - 1 - indexPath.row]
         // PICTURE
-        cell.userPicture.image = UIImage(named: "boris")
+        cell.userPicture.image = currentPost.userPicture
         // USERNAME
-        cell.userName.text = "Boris Yue"
+        cell.userName.text = currentPost.userName
         cell.userName.sizeToFit()
         cell.userName.frame.origin.y -= cell.userName.frame.height / 2
         // DATETIME
-        cell.dateTime.text = "Nov 26 2017, 5:00 PM"
+        cell.dateTime.text = currentPost.dateTime
         cell.dateTime.sizeToFit()
         cell.dateTime.frame.origin.x -= cell.dateTime.frame.width
         // POST TEXT
-        cell.postText.text = "Went on a really great run yesterday with amazing scenery and it was crazy!!!! Would recommend :)"
+        cell.postText.text = currentPost.postText
         // POST IMAGE
-        cell.postPicture.image = UIImage(named: "running.jpg")
+        cell.postPicture.image = currentPost.postPicture
         cell.postPicture.frame.origin.y += cell.postText.frame.maxY
         // LIKE ICON AND TEXT
         cell.likeIcon.frame.origin.y += cell.postPicture.frame.maxY
-        cell.likeLabel.text = "5"
+        cell.likeLabel.text = currentPost.numLikes
         cell.likeLabel.sizeToFit()
         cell.likeLabel.frame.origin.x += cell.likeIcon.frame.maxX
         cell.likeLabel.frame.origin.y = cell.likeIcon.frame.minY - 1
         // COMMENT ICON AND TEXT
         cell.commentIcon.frame.origin.x += cell.likeLabel.frame.maxX
         cell.commentIcon.frame.origin.y += cell.postPicture.frame.maxY
-        cell.commentLabel.text = "2"
+        cell.commentLabel.text = currentPost.numComments
         cell.commentLabel.sizeToFit()
         cell.commentLabel.frame.origin.x += cell.commentIcon.frame.maxX
         cell.commentLabel.frame.origin.y = cell.commentIcon.frame.minY - 1
         // SHARE ICON AND TEXT
         cell.shareIcon.frame.origin.x += cell.commentLabel.frame.maxX
         cell.shareIcon.frame.origin.y += cell.postPicture.frame.maxY
-        cell.shareLabel.text = "1"
+        cell.shareLabel.text = currentPost.numShares
         cell.shareLabel.sizeToFit()
         cell.shareLabel.frame.origin.x += cell.shareIcon.frame.maxX
         cell.shareLabel.frame.origin.y = cell.shareIcon.frame.minY - 1
