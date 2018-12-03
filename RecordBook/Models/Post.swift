@@ -48,44 +48,44 @@ class Post {
         }
     }
     
-//    func getProfilePic(withBlock: @escaping (UIImage) -> ()) {
-//        let ref = FIRStorage.storage().reference(forURL: imageUrl!) // use image URL to download image from storage
-//        ref.data(withMaxSize: 1 * 2048 * 2048) { data, error in
-//            if let error = error {
-//                print(error)
-//            } else {
-//                self.image = UIImage(data: data!)
-//                withBlock(self.image!)
-//            }
-//        }
-//    }
-//
-//    func getInterestedUsers(withBlock: @escaping (Int) -> Void) {
-//        postRef.child(self.id!).observeSingleEvent(of: .value, with: { snapshot in
-//            let value = snapshot.value as? NSDictionary
-//            let idArray = value?["interestedUsers"] as? [String] ?? []
-//            //                for val in idArray {
-//            //                    User.generateUserModel(withId: val, withBlock: { user in //how to pass list of users??
-//            //
-//            //                    })
-//            //                }
-//            withBlock(idArray.count)
-//        })
-//    }
-//
-//    func addInterestedUser(withId: String) {
-//        if !self.interestedUsers.contains(withId) {
-//            self.interestedUsers.append(withId)
-//            let childUpdates = ["\(self.id!)/interestedUsers": self.interestedUsers]
-//            postRef.updateChildValues(childUpdates) //update interested array
-//        }
-//    }
-//
-//    func removeInterestedUser(withId: String) {
-//        self.interestedUsers.remove(at: self.interestedUsers.index(of: withId)!)
-//        let childUpdates = ["\(self.id!)/interestedUsers": self.interestedUsers]
-//        postRef.updateChildValues(childUpdates) //update interested array
-//    }
-//
+    //    func getProfilePic(withBlock: @escaping (UIImage) -> ()) {
+    //        let ref = FIRStorage.storage().reference(forURL: imageUrl!) // use image URL to download image from storage
+    //        ref.data(withMaxSize: 1 * 2048 * 2048) { data, error in
+    //            if let error = error {
+    //                print(error)
+    //            } else {
+    //                self.image = UIImage(data: data!)
+    //                withBlock(self.image!)
+    //            }
+    //        }
+    //    }
+    //
+    //    func getInterestedUsers(withBlock: @escaping (Int) -> Void) {
+    //        postRef.child(self.id!).observeSingleEvent(of: .value, with: { snapshot in
+    //            let value = snapshot.value as? NSDictionary
+    //            let idArray = value?["interestedUsers"] as? [String] ?? []
+    //            //                for val in idArray {
+    //            //                    User.generateUserModel(withId: val, withBlock: { user in //how to pass list of users??
+    //            //
+    //            //                    })
+    //            //                }
+    //            withBlock(idArray.count)
+    //        })
+    //    }
+    //
+    //    func addInterestedUser(withId: String) {
+    //        if !self.interestedUsers.contains(withId) {
+    //            self.interestedUsers.append(withId)
+    //            let childUpdates = ["\(self.id!)/interestedUsers": self.interestedUsers]
+    //            postRef.updateChildValues(childUpdates) //update interested array
+    //        }
+    //    }
+    //
+    //    func removeInterestedUser(withId: String) {
+    //        self.interestedUsers.remove(at: self.interestedUsers.index(of: withId)!)
+    //        let childUpdates = ["\(self.id!)/interestedUsers": self.interestedUsers]
+    //        postRef.updateChildValues(childUpdates) //update interested array
+    //    }
+    //
     
 }
