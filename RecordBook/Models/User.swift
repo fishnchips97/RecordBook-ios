@@ -10,16 +10,14 @@ import Foundation
 import UIKit
 import Firebase
 
-class Post {
+class User {
     
-    var userPicture: UIImage?
+    var nationalRank: Int?
+    var stateRank: Int?
+    var cityRank: Int?
     var userName: String?
-    var dateTime: String?
-    var postPicture: UIImage?
-    var postText: String?
-    var numLikes: String?
-    var numComments: String?
-    var numShares: String?
+    var userPicture: UIImage?
+    var mileTime: String?
     
     init(postDict: [String:Any]?) {
         if let userPicture = postDict!["userPicture"] as? UIImage {
@@ -28,25 +26,19 @@ class Post {
         if let userName = postDict!["userName"] as? String {
             self.userName = userName
         }
-        if let dateTime = postDict!["dateTime"] as? String {
-            self.dateTime = dateTime
+        if let cityRank = postDict!["cityRank"] as? Int {
+            self.cityRank = cityRank
         }
-        if let postPicture = postDict!["postPicture"] as? UIImage {
-            self.postPicture = postPicture
+        if let stateRank = postDict!["stateRank"] as? Int {
+            self.stateRank = stateRank
         }
-        if let postText = postDict!["postText"] as? String {
-            self.postText = postText
+        if let nationalRank = postDict!["nationalRank"] as? Int {
+            self.nationalRank = nationalRank
         }
-        if let numLikes = postDict!["numLikes"] as? String {
-            self.numLikes = numLikes
+        if let mileTime = postDict!["mileTime"] as? String {
+            self.mileTime = mileTime
         }
-        if let numComments = postDict!["numComments"] as? String {
-            self.numComments = numComments
-        }
-        if let numShares = postDict!["numShares"] as? String {
-            self.numShares = numShares
-        }
-
+        
     }
     
     //    func getProfilePic(withBlock: @escaping (UIImage) -> ()) {

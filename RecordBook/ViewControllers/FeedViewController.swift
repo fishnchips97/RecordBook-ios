@@ -17,9 +17,7 @@ class FeedViewController: UIViewController {
     var addPostView: UIView!
     var addPostTextInput: UITextField!
     // Not connected to firebase yet, so manually create posts
-    var posts: [Post] = [Post(postDict: ["userPicture": UIImage(named: "boris"), "userName": "Boris Yue", "dateTime": "Nov 26 2017, 5:00 PM", "postPicture": UIImage(named: "running.jpg"), "postText": "Went on a really great run yesterday with amazing scenery and it was crazy!!!! Would recommend :)", "numLikes": "5", "numComments": "2", "numShares": "1"]),
-        Post(postDict: ["userPicture": UIImage(named: "aviral"), "userName": "Aviral Pereira", "dateTime": "Nov 28 2017, 5:36 PM", "postPicture": UIImage(named: "running3.jpg"), "postText": "Great run today!", "numLikes": "18", "numComments": "5", "numShares": "0"]),
-        Post(postDict: ["userPicture": UIImage(named: "erik"), "userName": "Erik Fisher", "dateTime": "Nov 28 2017, 6:23 PM", "postPicture": UIImage(named: "running2.jpg"), "postText": "Got a new personal record today for the mile at 4:26! #StriveForGreatness", "numLikes": "29", "numComments": "6", "numShares": "3"])]
+    var posts: [Post] = Data.posts
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent

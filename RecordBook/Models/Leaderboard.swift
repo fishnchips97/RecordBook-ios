@@ -10,43 +10,22 @@ import Foundation
 import UIKit
 import Firebase
 
-class Post {
+class Leaderboard {
     
-    var userPicture: UIImage?
-    var userName: String?
-    var dateTime: String?
-    var postPicture: UIImage?
-    var postText: String?
-    var numLikes: String?
-    var numComments: String?
-    var numShares: String?
+    var nationalRankings: [User]?
+    var stateRankings: [User]?
+    var cityRankings: [User]?
     
-    init(postDict: [String:Any]?) {
-        if let userPicture = postDict!["userPicture"] as? UIImage {
-            self.userPicture = userPicture
+    init(postDict: [String:[User]]?) {
+        if let nationalRankings = postDict!["nationalRankings"] {
+            self.nationalRankings = nationalRankings
         }
-        if let userName = postDict!["userName"] as? String {
-            self.userName = userName
+        if let stateRankings = postDict!["stateRankings"] {
+            self.stateRankings = stateRankings
         }
-        if let dateTime = postDict!["dateTime"] as? String {
-            self.dateTime = dateTime
+        if let cityRankings = postDict!["cityRankings"] {
+            self.cityRankings = cityRankings
         }
-        if let postPicture = postDict!["postPicture"] as? UIImage {
-            self.postPicture = postPicture
-        }
-        if let postText = postDict!["postText"] as? String {
-            self.postText = postText
-        }
-        if let numLikes = postDict!["numLikes"] as? String {
-            self.numLikes = numLikes
-        }
-        if let numComments = postDict!["numComments"] as? String {
-            self.numComments = numComments
-        }
-        if let numShares = postDict!["numShares"] as? String {
-            self.numShares = numShares
-        }
-
     }
     
     //    func getProfilePic(withBlock: @escaping (UIImage) -> ()) {

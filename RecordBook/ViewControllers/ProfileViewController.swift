@@ -172,7 +172,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         nationRankLabel.frame.origin.x -= nationRankLabel.frame.width / 2
         rankingView.addSubview(nationRankLabel)
         let stateRank = UILabel(frame: CGRect(x: nationRank.frame.maxX + 70, y: 27, width: 50, height: 50))
-        stateRank.text = "#1"
+        stateRank.text = "#2"
         stateRank.font = UIFont.boldSystemFont(ofSize: fontSize + 20)
         stateRank.textColor = UIColor.black
         stateRank.sizeToFit()

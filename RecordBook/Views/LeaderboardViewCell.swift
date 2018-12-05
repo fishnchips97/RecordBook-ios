@@ -21,8 +21,8 @@ class LeaderboardViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        contentView.frame = CGRect(x: contentView.frame.origin.x, y: contentView.frame.origin.y, width: 414, height: 60)
-        textPosY = contentView.frame.height/2 - 8
+        contentView.frame = CGRect(x: contentView.frame.origin.x, y: contentView.frame.origin.y, width: 414, height: 70)
+        textPosY = contentView.frame.height/2 - 6
         setUpRankLabel()
         setUpUserPicture()
         setUpUserName()
@@ -30,41 +30,50 @@ class LeaderboardViewCell: UITableViewCell {
     }
     
     func setUpRankLabel() {
-        rank = UILabel(frame: CGRect(x: offset, y: textPosY, width: 16, height: 16))
-        rank.text = "1"
-        rank.font = UIFont.systemFont(ofSize: 16)
+        rank = UILabel(frame: CGRect(x: offset, y: textPosY, width: 18, height: 18))
+        rank.font = UIFont.boldSystemFont(ofSize: 18)
         rank.textColor = .black
-        rank.sizeToFit()
+//        rank.sizeToFit()
         contentView.addSubview(rank)
     }
     
     func setUpUserPicture() {
-        userPicture = UIImageView(frame: CGRect(x: rank.frame.maxX + 15, y: contentView.frame.height/2 - 20, width: 40, height: 40))
+        userPicture = UIImageView(frame: CGRect(x: rank.frame.maxX + 15, y: contentView.frame.height/2 - 22.5, width: 45, height: 45))
         userPicture.layer.cornerRadius = userPicture.frame.width / 2
         userPicture.layer.masksToBounds = true
-        userPicture.image = UIImage(named: "boris")
         contentView.addSubview(userPicture)
     }
     
     func setUpUserName() {
         userName = UILabel(frame: CGRect(x: userPicture.frame.maxX + 15, y: textPosY, width: 16, height: 16))
-        userName.text = "Boris Yue"
-        userName.font = UIFont.systemFont(ofSize: 16)
+        userName.font = UIFont.boldSystemFont(ofSize: 16)
         userName.textColor = UIColor.black
-        userName.sizeToFit()
         contentView.addSubview(userName)
     }
     
     func setUpMileTime() {
-        let textSize: CGFloat = 23
+        let textSize: CGFloat = 30
         mileTime = UILabel(frame: CGRect(x: contentView.frame.width - offset, y: contentView.frame.height/2 - textSize/2, width: textSize, height: textSize))
-        mileTime.text = "4:27"
         mileTime.font = UIFont.boldSystemFont(ofSize: textSize)
         mileTime.textColor = UIColor.black
-        mileTime.sizeToFit()
-        mileTime.frame.origin.x -= mileTime.frame.width
         contentView.addSubview(mileTime)
     }
     
 
+}
+
+
+// Extension to add image
+extension UILabel {
+    func addImage(imageName: String) {
+        let attachment:NSTextAttachment = NSTextAttachment()
+        attachment.image = UIImage(named: imageName)
+        attachment.bounds = CGRect(x: 0, y: 0, width: 25, height: 25)
+        
+        let attachmentString:NSAttributedString = NSAttributedString(attachment: attachment)
+        let myString:NSMutableAttributedString = NSMutableAttributedString(string: self.text ?? "")
+        myString.append(attachmentString)
+        
+        self.attributedText = myString
+    }
 }

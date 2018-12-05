@@ -12,7 +12,8 @@ import Parchment
 
 class LeaderboardViewController: UIViewController {
     
-    var users = ["1. Boris - 5:20", "2. Marina - 5:30", "3. Amy - 5:32", "4. Aviral - 5:35", "5. Erik - 5:37"]
+    var leaderboard = Data.leaderboard
+    var currentUser = Data.loggedInUser
     var leaderboardView: UITableView!
 
     
@@ -24,13 +25,15 @@ class LeaderboardViewController: UIViewController {
     func setUpUI() {
         setUpNavBar()
         setUpMenu()
-//        setupLeaderboard()
     }
     
+    // Make a horizontal scroll menu
     func setUpMenu() {
-        let nationalController = LeaderboardTable()
-        let stateController = LeaderboardTable()
-        let cityController = LeaderboardTable()
+        LeaderboardTable.tabBarMinY = (self.tabBarController?.tabBar.frame.minY)!
+        let nationalController = LeaderboardTable(users: leaderboard.nationalRankings!, currentUser: currentUser, leaderboardType: LeaderboardType.national)
+        let stateController = LeaderboardTable(users: leaderboard.stateRankings!, currentUser: currentUser, leaderboardType: LeaderboardType.state)
+        let cityController = LeaderboardTable(users: leaderboard.cityRankings!, currentUser: currentUser,
+                                              leaderboardType: LeaderboardType.city)
         nationalController.title = "National"
         stateController.title = "State"
         cityController.title = "City"
@@ -45,7 +48,7 @@ class LeaderboardViewController: UIViewController {
             pagingViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pagingViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pagingViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            pagingViewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 90)
+            pagingViewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: (self.navigationController?.navigationBar.frame.maxY)!)
             ])
         pagingViewController.textColor = .black
         pagingViewController.font = UIFont.boldSystemFont(ofSize: 16)
