@@ -161,6 +161,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         addPostTextInput.tintColor = Constants.darkGrayColor
         addPostTextInput.returnKeyType = .go
         whiteView.addSubview(addPostTextInput)
+        // Make keyboard disappear on tap
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
         
@@ -209,9 +210,6 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return self.addPostHeight
     }
-
-    
-    
 }
 
 extension FeedViewController: UITextFieldDelegate {

@@ -20,6 +20,10 @@ class Post {
     var numLikes: String?
     var numComments: String?
     var numShares: String?
+    var cityRank: Int?
+    var stateRank: Int?
+    var nationalRank: Int?
+    var mileTime: String?
     
     init(postDict: [String:Any]?) {
         if let userPicture = postDict!["userPicture"] as? UIImage {
@@ -46,6 +50,19 @@ class Post {
         if let numShares = postDict!["numShares"] as? String {
             self.numShares = numShares
         }
+        if let cityRank = postDict!["cityRank"] as? Int {
+            self.cityRank = cityRank
+        }
+        if let stateRank = postDict!["stateRank"] as? Int {
+            self.stateRank = stateRank
+        }
+        if let nationalRank = postDict!["nationalRank"] as? Int {
+            self.nationalRank = nationalRank
+        }
+        if let mileTime = postDict!["mileTime"] as? String {
+            self.mileTime = mileTime
+        }
+
     }
     
     //    func getProfilePic(withBlock: @escaping (UIImage) -> ()) {
