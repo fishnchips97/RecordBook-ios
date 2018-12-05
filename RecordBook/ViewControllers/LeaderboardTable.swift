@@ -46,7 +46,7 @@ class LeaderboardTable: UIViewController {
 
     
     func setUpTable() {
-        leaderboardView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        leaderboardView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - cellHeight - 210))
         leaderboardView.register(LeaderboardViewCell.self, forCellReuseIdentifier: "leaderboardCell")
         leaderboardView.delegate = self
         leaderboardView.dataSource = self
