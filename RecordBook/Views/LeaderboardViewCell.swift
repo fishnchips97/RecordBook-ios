@@ -13,7 +13,7 @@ class LeaderboardViewCell: UITableViewCell {
     var rank: UILabel!
     var userPicture: UIImageView!
     var userName: UILabel!
-    var offset: CGFloat = 10
+    var offset: CGFloat = 20
     var textPosY: CGFloat!
     var mileTime: UILabel!
     
@@ -39,7 +39,7 @@ class LeaderboardViewCell: UITableViewCell {
     }
     
     func setUpUserPicture() {
-        userPicture = UIImageView(frame: CGRect(x: rank.frame.maxX + offset + 5, y: contentView.frame.height/2 - 17.5, width: 35, height: 35))
+        userPicture = UIImageView(frame: CGRect(x: rank.frame.maxX + 15, y: contentView.frame.height/2 - 20, width: 40, height: 40))
         userPicture.layer.cornerRadius = userPicture.frame.width / 2
         userPicture.layer.masksToBounds = true
         userPicture.image = UIImage(named: "boris")
@@ -47,7 +47,7 @@ class LeaderboardViewCell: UITableViewCell {
     }
     
     func setUpUserName() {
-        userName = UILabel(frame: CGRect(x: userPicture.frame.maxX + offset + 5, y: textPosY, width: 16, height: 16))
+        userName = UILabel(frame: CGRect(x: userPicture.frame.maxX + 15, y: textPosY, width: 16, height: 16))
         userName.text = "Boris Yue"
         userName.font = UIFont.systemFont(ofSize: 16)
         userName.textColor = UIColor.black

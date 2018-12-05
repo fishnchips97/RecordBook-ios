@@ -51,10 +51,12 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - Parchment (1.5.0)
 
 DEPENDENCIES:
   - Charts
   - Firebase/Core
+  - Parchment
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -66,6 +68,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - nanopb
+    - Parchment
 
 SPEC CHECKSUMS:
   Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
@@ -76,7 +79,8 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Parchment: 5a8c9c73549a6d73a7c1b606c27246910d2e5720
 
-PODFILE CHECKSUM: 6506f20fc06826faad417d2473b7876ff1957946
+PODFILE CHECKSUM: 59172b95dec3b308a63f5358d24223462bb3b79a
 
 COCOAPODS: 1.5.3

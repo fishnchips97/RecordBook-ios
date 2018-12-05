@@ -9,4 +9,5 @@ target 'RecordBook' do
 
   # Pods for RecordBook
   pod 'Charts'
+  pod 'Parchment'
 end
