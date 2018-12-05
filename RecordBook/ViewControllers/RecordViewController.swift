@@ -183,7 +183,7 @@ class RecordViewController: UIViewController, CLLocationManagerDelegate {
 
     
     func setUpPlayButton() {
-        playButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 45, y: (self.tabBarController?.tabBar.frame.minY)! - 110, width: 90, height: 90))
+        playButton = UIButton(frame: CGRect(x: view.frame.width / 2 - 45, y: (self.tabBarController?.tabBar.frame.minY)! - 120, width: 90, height: 90))
         playButton.backgroundColor = Constants.lightBlueColor
         playButton.layer.cornerRadius = playButton.frame.width / 2 // make it a circle
         playButton.layer.masksToBounds = true
