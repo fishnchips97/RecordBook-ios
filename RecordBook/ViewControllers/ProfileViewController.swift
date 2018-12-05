@@ -23,6 +23,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     var milesRunLabel: UILabel!
     var lineChartView: LineChartView!
     var gearView: UIView!
+    var shoeConditionLabel: UILabel! //based on how much runner has run with that shoe
+    var shoeCondition: UILabel!
+    var shoeConditionInfo: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,19 +42,21 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLayoutSubviews()
         
         scrollView.frame = view.bounds
-        containerView.frame = CGRect(x: 0, y: -50, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
+        containerView.frame = CGRect(x: 0, y: -50, width: scrollView.contentSize.width, height: scrollView.contentSize.height + 200)
         containerView.isUserInteractionEnabled = true
         
     }
     
     func setUpScrollView() {
-        self.scrollView = UIScrollView()
-        self.scrollView.delegate = self
-        self.scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height + 30)
+        scrollView = UIScrollView()
+        scrollView.delegate = self
+        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height + 30)
+        scrollView.delaysContentTouches = false
         containerView = UIView()
         scrollView.addSubview(containerView)
         view.addSubview(scrollView)
     }
+    
     
     func setUpUI() {
         fontSize = 26
@@ -233,7 +238,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setUpGear() {
-        gearView = UIView(frame: CGRect(x: boxOffset, y: statsView.frame.maxY + 30, width: view.frame.width - boxOffset * 2, height: 130))
+        gearView = UIView(frame: CGRect(x: boxOffset, y: statsView.frame.maxY + 30, width: view.frame.width - boxOffset * 2, height: 150))
         gearView.backgroundColor = UIColor.white
         gearView.clipsToBounds = true
         gearView.layer.cornerRadius = 5
@@ -249,8 +254,34 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         let brand = UIImageView(frame: CGRect(x: view.frame.width/2 - 110, y: gearTitle.frame.maxY - 40, width: 170, height: 160))
         brand.image = UIImage(named: "shoe")
         gearView.addSubview(brand)
-        
+        // Set up shoe condition
+        shoeConditionLabel = UILabel(frame: CGRect(x: view.frame.width/2, y: 115, width: 30, height: 30))
+        shoeConditionLabel.text = "CONDITION:"
+        shoeConditionLabel.font = gearTitle.font.withSize(fontSize - 13)
+        shoeConditionLabel.textColor = Constants.darkGrayColor
+        shoeConditionLabel.sizeToFit()
+        shoeConditionLabel.frame.origin.x -= (shoeConditionLabel.frame.width + 10)
+        gearView.addSubview(shoeConditionLabel)
+        shoeCondition = UILabel(frame: CGRect(x: shoeConditionLabel.frame.maxX + 5, y: 115, width: 30, height: 30))
+        shoeCondition.text = "BAD"
+        shoeCondition.font = gearTitle.font.withSize(fontSize - 13)
+        shoeCondition.textColor = .red
+        shoeCondition.sizeToFit()
+        gearView.addSubview(shoeCondition)
+        // Set up shoe condition button
+        shoeConditionInfo = UIButton(frame: CGRect(x: shoeCondition.frame.maxX + 5, y: 115, width: 16, height: 16))
+        shoeConditionInfo.setImage(UIImage(named: "question"), for: .normal)
+        shoeConditionInfo.addTarget(self, action: #selector(informShoeCondition), for: .touchUpInside)
+        gearView.addSubview(shoeConditionInfo)
+//        gearView.sendSubviewToBack(brand)
         containerView.addSubview(gearView)
+    }
+    
+    // Creates popup that tells user about shoe condition
+    @objc func informShoeCondition() {
+        let alert = UIAlertController(title: "Poor Shoe Condition", message: "These past 6 months, you've ran over 200 miles with the same pair of shoes. Based on extensive research, we recommend you purchase a new pair soon to avoid any foot injuries!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Got it", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
 }

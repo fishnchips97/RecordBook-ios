@@ -120,6 +120,7 @@ class RecordViewController: UIViewController, CLLocationManagerDelegate {
             }
             
         }
+        lastLocation = locations.last
 
     }
     
@@ -210,6 +211,11 @@ class RecordViewController: UIViewController, CLLocationManagerDelegate {
             playButton.setImage(UIImage(named: "play-button"), for: .normal)
             playButton.imageEdgeInsets.left = 30
             stopTimer()
+            let alert = UIAlertController(title: "Great run!", message: "You've been running more frequently and intensely this past week; make sure to stay hydrated, and don't overexert yourself!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Got it", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+
+
         }
         shouldUpdateSpeed = !shouldUpdateSpeed
         shouldUpdateDistance = !shouldUpdateDistance
@@ -249,9 +255,8 @@ class RecordViewController: UIViewController, CLLocationManagerDelegate {
     
     func convertToMile(distance: CLLocationDistance) {
         let doubleDistance = abs(Double(distance))
-        let miles = doubleDistance * 0.00062
-        let rounded = Double(round(100*miles)/100)
-        milesLabel.text = "\(rounded)"
+        let milesRan = doubleDistance * 0.00062
+        miles.text = String(format: "%.2f", ceil(milesRan*100)/100) //2 decimal places
     }
     
     

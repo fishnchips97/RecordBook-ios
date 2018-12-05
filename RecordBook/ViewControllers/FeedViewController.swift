@@ -182,7 +182,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         pictureText.sizeToFit()
         whiteView.addSubview(pictureText)
         
-        let videoIcon = UIImageView(frame: CGRect(x: self.view.frame.width * 0.43 - 8, y: lineView.frame.maxY + 8, width: 16, height: 16))
+        let videoIcon = UIImageView(frame: CGRect(x: self.view.frame.width * 0.45 - 8, y: lineView.frame.maxY + 8, width: 16, height: 16))
         videoIcon.image = UIImage(named: "video-camera")
         whiteView.addSubview(videoIcon)
         let videoText = UILabel(frame: CGRect(x: videoIcon.frame.maxX + 5, y: lineView.frame.maxY + 7, width: 100, height: 30))
@@ -192,7 +192,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         videoText.sizeToFit()
         whiteView.addSubview(videoText)
 
-        let runIcon = UIImageView(frame: CGRect(x: self.view.frame.width * 0.75 - 8, y: lineView.frame.maxY + 7, width: 16, height: 16))
+        let runIcon = UIImageView(frame: CGRect(x: self.view.frame.width * 0.8 - 8, y: lineView.frame.maxY + 7, width: 16, height: 16))
         runIcon.image = UIImage(named: "running-icon")
         whiteView.addSubview(runIcon)
         let runText = UILabel(frame: CGRect(x: runIcon.frame.maxX + 5, y: lineView.frame.maxY + 7, width: 100, height: 30))
